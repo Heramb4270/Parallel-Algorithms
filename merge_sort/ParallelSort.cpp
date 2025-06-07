@@ -1,11 +1,20 @@
 #include "ParallelSort.hpp"
+#include "MergeSort.hpp"
+// #include ""
+// #include "merge_sort/ParallelSort.hpp"
+
 #include <thread>
 Parallel_MergeSort::Parallel_MergeSort(std::vector<int> *nums){
     this->nums = nums;
 }
 Parallel_MergeSort::~Parallel_MergeSort(){}
-
 void Parallel_MergeSort::Parallel_mergeSortAlgo(int left,int right){
+    
+    MergeSort *normalSort = new MergeSort(nums);
+    if(right - left < 7000){
+        normalSort->mergeSortAlgo(left, right);
+        return;
+    }
     if(left>=right){
         return;
     }
